@@ -1,0 +1,12 @@
+.red-text{
+	color:red;
+}
+.data-table td,
+.data-table th,
+.data-table tbody th,
+.data-table tbody td,
+.data-table thead td,
+.data-table thead th {
+	display: table-cell;
+	margin: 0;
+}

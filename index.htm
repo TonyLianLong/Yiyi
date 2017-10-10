@@ -1,0 +1,155 @@
+<!DOCTYPE>
+<head>
+<meta charset="UTF-8"><title>数据获取工具</title>
+
+<meta name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=10"> 
+<meta name="format-detection" content="telphone=no, email=no"/>
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="full-screen" content="yes">
+<meta name="x5-fullscreen" content="true">
+<meta name="browsermode" content="application">
+<html lang="zh-cn">
+<meta name="description" content="数据获取工具"/>
+<meta name="keywords" content="数据获取工具"/>
+<meta name="Tony" contect="tony, tonylianlong@tonylianlong.com" />
+<link rel="shortcut icon" type="image/ico" href="/favicon.ico"/>
+
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="./img/logo-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="./img/logo-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="./img/logo-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="./img/logo-144.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="./img/logo-152.png">
+<link rel="apple-touch-icon-precomposed" sizes="196x196" href="./img/logo-196.png">
+
+<link rel="apple-touch-startup-image" sizes="2048x1496" href="./img/startup-2048x1496.png" media="screen and (min-device-width:481px) and (max-device-width:1024px) and (orientation:landscape) and (-webkit-min-device-pixel-ratio: 2)">
+<link rel="apple-touch-startup-image" sizes="1536x2008" href="./img/startup-1536x2008.png" media="screen and (min-device-width:481px) and (max-device-width:1024px) and (orientation:portrait) and (-webkit-min-device-pixel-ratio: 2)">
+<link rel="apple-touch-startup-image" sizes="1024x748" href="./img/startup-1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+<link rel="apple-touch-startup-image" sizes="768x1004" href="./img/startup-768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" sizes="640x920" href="./img/startup-640x920.png" media="screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)">
+<link rel="apple-touch-startup-image" sizes="320x460" href="./img/startup-320x460.png" media="screen and (max-device-width: 320)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="msapplication-TileColor" content="#000"/>
+<meta name="msapplication-TileImage" content="icon.png"/>
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="空气状态显示">
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<script src="./js/jquery.js"></script>
+<script src="./js/js.cookie.js"></script>
+<link rel="stylesheet" type="text/css" href="./style/jquery.mobile-1.4.5.min.css"></link>
+<script src="./js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<!--<body>-->
+<body ontouchmove="event.preventDefault()"  >
+<div data-role="header" role="banner" class="ui-header ui-bar-inherit">
+<h1 class="ui-title" role="heading" aria-level="1">空气状态显示</h1>
+</div>
+
+<a href="#popup1" data-rel="popup" class="ui-btn ui-corner-all" data-transition="pop">登陆</a>
+<a href="#popup2" data-rel="popup" class="ui-btn ui-corner-all" data-transition="pop">输入号码访问盒子</a>
+
+<div data-role="footer" role="banner" class="ui-footer ui-bar-inherit">
+<h1 class="ui-title" role="heading" aria-level="1">http://air.tonylianlong.com</h1>
+</div>
+<div data-role="popup" id="popup1">
+<form id="login_form" data-ajax="false">
+<fieldset data-role="controlgroup" data-mini="false">
+<legend class="ui-hidden-accessible">竖直排列</legend>
+<label for="username" class="ui-hidden-accessible">用户名</label>
+<input type="text" name="username" id="username" placeholder="用户名" value="">
+<label for="password" class="ui-hidden-accessible">密码</label>
+<input type="password" name="password" id="password" placeholder="密码" value="">
+<button type="submit" id="login_button" class="ui-shadow ui-btn ui-corner-all ui-mini">登陆</button>
+<button type="button" id="regist_button" class="ui-shadow ui-btn ui-corner-all ui-mini">注册</button>
+</fieldset>
+</form>
+</div>
+<!--<div data-role="popup" id="popup2">
+<form action="./box.htm" method="get" data-ajax="false">
+<fieldset data-role="controlgroup" data-mini="false">
+<legend class="ui-hidden-accessible">竖直排列</legend>
+<label for="box_code" class="ui-hidden-accessible">号码</label>
+<input type="text" name="box_code" id="box_code" placeholder="号码" value="">
+<label for="visit_button" class="ui-hidden-accessible">访问</label>
+<button type="submit" id="visit_button" class="ui-shadow ui-btn ui-corner-all ui-mini">访问</button>
+</fieldset>
+</form>
+</div>-->
+<div data-role="popup" id="popup2" data-theme="a" class="ui-corner-all">
+	<form action="./box.htm" method="get" data-ajax="false">
+		<div style="padding:10px 20px;">
+			<div data-role="header" data-theme="a">
+				<h3>输入号码</h3>
+			</div>
+			<label for="box_code" class="ui-hidden-accessible">盒子号码：</label>
+			<input type="text" name="box_code" id="box_code" value="" placeholder="盒子号码" data-theme="a">
+			<label for="box_password" class="ui-hidden-accessible">访问密码：</label>
+			<input type="password" name="box_password" id="box_password" value="" placeholder="密码" data-theme="a">
+			<button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-check">访问</button>
+		</div>
+	</form>
+</div>
+<script>
+
+$(document).ready(function(){
+	var resolution_tips = Cookies.get('resolution_tips');
+	if(resolution_tips != "true"){
+		resolution_tips = false;
+	}else{
+		resolution_tips = true;
+	}
+	if(($("body").width()<$("body").height())&&(resolution_tips!=true)){
+		alert("横屏访问更好。");
+		Cookies.set('resolution_tips', "true", { expires: 3650, path: '/' });
+	}
+});
+
+function preventDefault(ev) {
+  ev.preventDefault()
+}
+
+document.addEventListener('touchmove', preventDefault, false);
+$("#login_form").submit(function(e) {
+	e.preventDefault();
+	$.ajax({ 
+		type:"GET", 
+		url:"user.php", 
+		dataType:"json", 
+		data:{command:"login",username:$("#username").val(),password:$("#password").val()},
+		success:function(result){
+			console.log(result);
+			if(result.login == true){
+				location.href="/center.php";
+			}else{
+				alert("登陆失败，原因："+result.result);
+			}
+		},
+		failure:function (result) { 
+			alert("登陆错误。");
+		}
+});
+});
+$("#regist_button").click(function(){
+	location.href="./regist.php";
+});
+
+$.ajax({ 
+	type:"GET", 
+	url:"user.php", 
+	dataType:"json", 
+	data:{command:"info"},
+	success:function(result){
+		console.log(result);
+		if(result.login == true){
+			location.href="/center.php";
+		}
+	},
+	failure:function (result) { 
+	}
+});
+</script>
+</body>
